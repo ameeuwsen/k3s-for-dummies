@@ -1,13 +1,7 @@
-lsi: false
-safe: true
-source: /
-incremental: false
-highlighter: rouge
-gist:
-  noscript: false
-kramdown:
-  math_engine: mathjax
-  syntax_highlighter: rouge
-remote_theme: pages-themes/tactile@v0.2.0
-plugins:
-- jekyll-remote-theme
+theme: jekyll-theme-minimal
+title: K3S for Dummies, Welcome!
+description: I hope this site is useful.
+
+# remote_theme: pages-themes/tactile@v0.2.0
+# plugins:
+# - jekyll-remote-theme
