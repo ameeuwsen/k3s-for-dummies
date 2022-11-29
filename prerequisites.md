@@ -1,7 +1,5 @@
 ---
-layout: page
-title: "Prerequisites"
-permalink: /prerequisites
+layout: default
 ---
 
 ## This is some content for the prerequsites page.
