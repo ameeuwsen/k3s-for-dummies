@@ -16,7 +16,7 @@ helm upgrade --install metallb metallb/metallb --create-namespace \
 kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/metal.yml
 
 ## Deploy Portainer
-kubectl apply -n portainer -f https://raw.githubusercontent.com/portainer/k8s/master/deploy/manifests/portainer/portainer.yaml
+kubectl apply -n portainer -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/portainer.yml
 
 ## Delete Portainer
 kubectl delete all --all -n portainer
