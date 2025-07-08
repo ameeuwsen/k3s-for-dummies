@@ -55,7 +55,7 @@ kind: Service
 metadata:
   name: portainer
   annotations:
-    metallb.io/loadBalancerIPs: 192.168.50.210
+    metallb.io/loadBalancerIPs: 192.168.50.200
 spec:
   ports:
   - port: 9000
