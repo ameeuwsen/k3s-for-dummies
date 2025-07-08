@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: nginx-pod
-  namespace: portainer
+  namespace: nginx
   labels:
     app: nginx
 spec:
