@@ -23,15 +23,17 @@ spec:
         - containerPort: 9000
 ---
 apiVersion: v1
-kind: Services
+kind: Service
 metadata:
+  name: resume-ingress
   namespace: resume
-  name: php-app-service
 spec:
-  selector:
-    app: php-app
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 9000
   type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 9000
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: php-app-deployment
+    app.kubernetes.io/instance: php-app-deployment
