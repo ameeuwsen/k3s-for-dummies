@@ -56,7 +56,7 @@ metadata:
   name: portainer
   namespace: portainer
   annotations:
-    metallb.io/loadBalancerIPs: 192.168.50.200
+    metallb.io/loadBalancerIPs: 192.168.50.210
 spec:
   type: LoadBalancer
   ports:
