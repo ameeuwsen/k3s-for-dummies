@@ -10,6 +10,7 @@ spec:
   replicas: 2
   template:
     metadata:
+      namespace: nginx
       labels:
         app: nginx
     spec:
