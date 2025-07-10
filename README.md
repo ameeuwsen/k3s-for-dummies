@@ -20,3 +20,6 @@ kubectl apply -n portainer -f https://raw.githubusercontent.com/ameeuwsen/k3s-fo
 
 ## Delete Portainer
 kubectl delete all --all -n portainer
+
+## Reset Leaks
+kubectl delete all --all -n leaks; kubectl delete pvc leaks-a-pvc -n leaks; kubectl delete pv nas-pv-leaks
