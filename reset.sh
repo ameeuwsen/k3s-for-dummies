@@ -12,3 +12,5 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 kubectl get pods --namespace cert-manager
 
 helm install nginx ingress-nginx/ingress-nginx
+
+kubectl apply -n portainer -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/portainer.yml
