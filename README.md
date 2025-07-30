@@ -15,6 +15,9 @@ helm upgrade --install metallb metallb/metallb --create-namespace \
 ## Deploy MetalLb
 kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/metal.yml
 
+## Setup TLS ingress
+kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/ingress.yml
+
 ## Deploy Portainer
 kubectl apply -n portainer -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/portainer.yml
 
@@ -23,3 +26,23 @@ kubectl delete all --all -n portainer
 
 ## Reset Leaks
 kubectl delete all --all -n leaks; kubectl delete pvc leaks-a-pvc -n leaks; kubectl delete pv nas-pv-leaks
+
+
+
+### If openssl.conf not found run command below
+wget https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/misc/openssl.conf
+
+## Setup TLS
+
+### Install certmanager
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.18.2/cert-manager.yaml
+kubectl get pods --namespace cert-manager -w
+
+## Create secret
+kubectl create secret generic whoami-secret --from-file=tls.crt=./certs/server.crt --from-file=tls.key=./certs/server.key --namespace dev
+
+openssl s_client -showcerts -connect ameeuwsen.com:443 < /dev/null 2> /dev/null | openssl x509 -noout -subject -issuer -ext subjectAltName
+subject=CN = default-router.example.com
+issuer=CN = default-router.example.com
+X509v3 Subject Alternative Name: 
+    DNS:*.example.com
