@@ -11,4 +11,4 @@ kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/ref
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.18.2/cert-manager.yaml
 kubectl get pods --namespace cert-manager
 
-helm install nginx-ingress ingress-nginx/ingress-nginx
+helm install nginx ingress-nginx/ingress-nginx
