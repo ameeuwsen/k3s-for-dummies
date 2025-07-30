@@ -15,6 +15,15 @@ helm upgrade --install metallb metallb/metallb --create-namespace \
 ## Deploy MetalLb
 kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/metal.yml
 
+## Deploy certmanager
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.18.2/cert-manager.yaml
+kubectl get pods --namespace cert-manager -w
+
+## 
+
+
+
+
 ## Setup TLS ingress
 kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/ingress.yml
 
