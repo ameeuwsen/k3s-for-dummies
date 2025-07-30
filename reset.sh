@@ -9,6 +9,6 @@ helm upgrade --install metallb metallb/metallb --create-namespace --namespace me
 kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/metal.yml
 
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.18.2/cert-manager.yaml
-kubectl get pods --namespace cert-manager -w
+kubectl get pods --namespace cert-manager
 
 helm install nginx-ingress ingress-nginx/ingress-nginx
