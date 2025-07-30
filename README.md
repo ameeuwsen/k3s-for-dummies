@@ -1,7 +1,7 @@
 # k3s-for-dummies
 
 ## Reset
-curl -sfL https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/reset.sh
+curl -sfL https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/reset.sh | sh
 
 ## Uninstall to startover
 /usr/local/bin/k3s-killall.sh; /usr/local/bin/k3s-uninstall.sh; rm .kube/config;  rm -rf /etc/rancher/k3s;  rm -rf /var/lib/rancher/k3s
