@@ -1,39 +1,46 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: php-app-deployment
+  name: resume-app
   namespace: resume
   labels:
-    app: php-app
+    app: resume-app
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: php-app
+      app: resume-app
   template:
     metadata:
       namespace: resume
       labels:
-        app: php-app
+        app: resume-app
     spec:
       containers:
-      - name: php-fpm
-        image: bitnami/php-fpm:latest
+      - name: resume-pod
+        image: litespeedtech/openlitespeed
         ports:
-        - containerPort: 9000
+        - containerPort: 80
+        volumeMounts:
+            - mountPath: /var/www/vhosts/localhost/html
+              name: web
+      restartPolicy: Always
+      volumes:
+      - name: web
+        nfs:
+          path: /mnt/mainPool/cluster/resume
+          server: 192.168.50.51
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: resume-ingress
+  name: resume-app-service
   namespace: resume
 spec:
-  type: LoadBalancer
-  ports:
-    - port: 80
-      targetPort: 9000
-      protocol: TCP
-      name: http
   selector:
-    app.kubernetes.io/name: php-app-deployment
-    app.kubernetes.io/instance: php-app-deployment
+    app: resume-app
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
