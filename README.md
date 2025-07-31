@@ -24,7 +24,7 @@ kubectl get pods --namespace cert-manager -w
 
 ## Deploy NGINX controller
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm install quickstart ingress-nginx/ingress-nginx
+helm install nginx ingress-nginx/ingress-nginx --set controller.config.strict-validate-path-type=false
 
 
 
