@@ -1,3 +1,10 @@
+piVersion: v1
+kind: Namespace
+metadata:
+  name: resume
+  labels:
+    name: resume
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -34,13 +41,41 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: resume-app-service
+  name: resume-service
   namespace: resume
 spec:
   selector:
     app: resume-app
   ports:
-    - name: http
+    - protocol: TCP
       port: 80
       targetPort: 80
-  type: LoadBalancer
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: resume
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+#   nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  labels:
+    app: resume-ingress
+  name: resume-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: ameeuwsen.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: resume-service
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - ameeuwsen.com
+      secretName: ameeuwsen-tls-cert
