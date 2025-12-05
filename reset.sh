@@ -18,6 +18,8 @@ kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/ref
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.18.2/cert-manager.yaml
 kubectl get pods --namespace cert-manager
 
+helm repo add nginx-stable https://helm.nginx.com/stable
+helm repo update
 helm install nginx ingress-nginx/ingress-nginx --set controller.config.strict-validate-path-type=false
 
 kubectl apply -n portainer -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/portainer.yml
