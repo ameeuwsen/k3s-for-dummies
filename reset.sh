@@ -2,6 +2,8 @@
 
 /usr/local/bin/k3s-killall.sh; /usr/local/bin/k3s-uninstall.sh; rm .kube/config;  rm -rf /etc/rancher/k3s;  rm -rf /var/lib/rancher/k3s
 
+apt -y install iptables
+
 curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644 --disable servicelb --token R32pearlz994  --bind-address 192.168.50.200 --disable-cloud-controller --disable traefik
 cp /etc/rancher/k3s/k3s.yaml ~/.kube/config; kubectl get pods -A
 
