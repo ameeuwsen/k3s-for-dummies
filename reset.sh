@@ -7,6 +7,10 @@ apt -y install iptables
 curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644 --disable servicelb --token R32pearlz994  --bind-address 192.168.50.200 --disable-cloud-controller --disable traefik
 cp /etc/rancher/k3s/k3s.yaml ~/.kube/config; kubectl get pods -A
 
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+chmod u+x get_helm.sh
+./get_helm.sh
+
 helm upgrade --install metallb metallb/metallb --create-namespace --namespace metallb-system --wait
 kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/metal.yml
 
