@@ -11,6 +11,7 @@ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scr
 chmod u+x get_helm.sh
 ./get_helm.sh
 
+helm repo add metallb https://metallb.github.io/metallb
 helm upgrade --install metallb metallb/metallb --create-namespace --namespace metallb-system --wait
 kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/metal.yml
 
