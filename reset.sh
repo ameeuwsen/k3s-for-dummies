@@ -17,9 +17,10 @@ kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/ref
 
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.18.2/cert-manager.yaml
 kubectl get pods --namespace cert-manager
+kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/clusterissuer-staging.yml
+kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/clusterissuer-prod.yml
 
-helm repo add nginx-stable https://helm.nginx.com/stable
-helm repo update
-helm install nginx ingress-nginx/ingress-nginx --set controller.config.strict-validate-path-type=false
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.14.1/deploy/static/provider/baremetal/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/nginx-service.yml
 
 kubectl apply -n portainer -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/portainer.yml
