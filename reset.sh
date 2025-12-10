@@ -14,13 +14,18 @@ chmod u+x get_helm.sh
 helm repo add metallb https://metallb.github.io/metallb
 helm upgrade --install metallb metallb/metallb --create-namespace --namespace metallb-system --wait
 kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/metal.yml
+kubectl wait --for=condition=Ready metallb --timeout=300s
 
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.18.2/cert-manager.yaml
+kubectl wait --for=condition=Ready cert-manager --timeout=300s
+kubectl wait --for=condition=Ready cert-manager-cainjector --timeout=300s
+kubectl wait --for=condition=Ready cert-manager-webhook --timeout=300s
 kubectl get pods --namespace cert-manager
 kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/clusterissuer-staging.yml
 kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/clusterissuer-prod.yml
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.14.1/deploy/static/provider/baremetal/deploy.yaml
 kubectl apply -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/nginx-service.yml
+kubectl wait --for=condition=Ready ingress-nginx-controller --timeout=300s
 
 kubectl apply -n portainer -f https://raw.githubusercontent.com/ameeuwsen/k3s-for-dummies/refs/heads/master/apps/portainer.yml
