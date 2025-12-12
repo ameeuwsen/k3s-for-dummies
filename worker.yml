@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Install IP tables
+apt -y install iptables
+
+# Install NFS server kernel
+sudo apt install nfs-kernel-server
+
+# Install K3S
+curl -sfL https://get.k3s.io | K3S_URL=https://192.168.50.200:6443 K3S_TOKEN=K100ab07af02c8e6d54fe61e935b15b2af58d9e90ab11a1b9871888185807c51c25::server:R32pearlz994 sh -
