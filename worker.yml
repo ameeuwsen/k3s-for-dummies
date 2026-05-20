@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Install updates
-sudo apt-get install update
-sudo apt-get intsall upgrade
+sudo apt update
+sudo apt upgrade
 
 # Install IP tables
 apt -y install iptables
